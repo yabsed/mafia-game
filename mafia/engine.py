@@ -216,7 +216,8 @@ def apply(g: dict, task: dict, raw: dict) -> None:
     p = player(g, task["actor"])
     p["mood"] = d["mood"]
     if d["warning"]:
-        emit(g, "notice", d["warning"], p["id"])
+        # A public network notice must not identify a secret night actor.
+        emit(g, "notice", d["warning"], None if g["phase"] == "night" else p["id"])
     if d["memo"]:
         # A fictional, one-line diary, NOT the provider's hidden reasoning.
         p["notes"].append(f'{g["day"]}일 메모: {d["memo"]}')
@@ -253,9 +254,10 @@ def spectator(g: dict, reveal: bool = False) -> dict:
     result = {k: copy.deepcopy(g[k]) for k in ("id", "created", "seed", "rounds", "mode", "model", "budget",
                                                 "max_days", "day", "phase", "winner", "turn")}
     result["players"] = [{k: copy.deepcopy(v) for k, v in p.items()
-                          if k not in {"role", "notes"} or reveal} for p in g["players"]]
+                          if k not in {"role", "notes", "mood"} or reveal} for p in g["players"]]
     result["events"] = [copy.deepcopy(e) for e in g["events"] if reveal or e["audience"] is None]
     task = next_task(g)
-    result["active"] = task["actor"] if task else None
+    # Highlighting a night actor would reveal who has a special role.
+    result["active"] = task["actor"] if task and (reveal or g["phase"] != "night") else None
     result["reveal"] = reveal
     return result
