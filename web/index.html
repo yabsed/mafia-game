@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171c19">
+  <title>나는 AI가 아니야! · 모닥불 마을</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="모닥불 마을 홈"><span class="brand-mark">⌂</span> 모닥불 마을 <span class="brand-en">FIRESIDE CLUB</span></a>
+    <nav aria-label="마을 메뉴">
+      <span id="connection" class="connection">연결 중</span>
+      <button id="sound" class="quiet">♪ <span>소리 켜기</span></button>
+      <button id="history" class="quiet">기록 서랍</button>
+      <button id="new" class="outline">＋ 새 마을</button>
+    </nav>
+  </header>
+  <section class="intro">
+    <div><p class="eyebrow">A LITTLE VILLAGE. A FEW LITTLE LIES.</p>
+    <h1>나는 AI가 <em>아니야!</em><span class="title-star">✳</span></h1>
+    <p class="subtitle">아무것도 안 해도 괜찮아요. 서로를 의심하는 건 이 친구들의 몫이니까.</p></div>
+    <div class="intro-note"><span>따뜻한 차 한 잔과</span><br>조금 수상한 이웃들.<i>☕</i></div>
+  </section>
+  <div id="error" class="error" role="alert" hidden></div>
+  <main class="layout">
+    <section class="village-column" aria-label="마을 관전">
+      <div id="stage" class="stage">
+        <div class="stage-top"><span class="phase-pill"><b id="phase-icon">☀</b> <span id="phase-label">어서 와요, 모닥불 마을</span></span><span id="mode-badge" class="mode-badge">무료 데모</span></div>
+        <svg class="landscape" viewBox="0 0 900 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs><radialGradient id="glow"><stop stop-color="#d5b985" stop-opacity=".18"/><stop offset="1" stop-color="#d5b985" stop-opacity="0"/></radialGradient><pattern id="grass" width="57" height="53" patternUnits="userSpaceOnUse"><path d="M12 25l-3-6m3 6 3-8m29 34 3-7" stroke="#96a784" stroke-opacity=".1" stroke-width="2" fill="none"/></pattern></defs>
+          <rect width="900" height="600" fill="#273a32"/>
+          <ellipse cx="460" cy="190" rx="540" ry="160" fill="#30483c"/>
+          <path d="M0 185Q150 40 315 157T640 145T960 180V600H0Z" fill="#334a3c"/>
+          <path d="M0 314Q180 186 350 277T700 240T980 300V600H0Z" fill="#394e3d"/>
+          <path d="M356 610Q340 490 436 357Q535 270 496 179" stroke="#a69d70" stroke-opacity=".13" stroke-width="60" fill="none"/>
+          <rect width="900" height="600" fill="url(#grass)"/>
+          <ellipse cx="450" cy="366" rx="250" ry="208" fill="url(#glow)"/>
+          <g fill="#20382f" stroke="#263e32" stroke-width="3">
+            <path d="M4 99L64 10l64 89H103l43 69H92v94H70v-94H0l38-69Z"/>
+            <path d="M786 109L840 15l65 94h-28l43 61h-69v91h-17v-91h-76l50-61Z"/>
+            <path d="M-39 422L19 320l63 103H54l41 61H30v99H10v-99h-66l45-62Z"/>
+            <path d="M834 457l48-99 58 100h-25l40 60h-60v76h-18v-76h-63l42-61Z"/>
+          </g>
+          <g class="cottage" transform="translate(142 108) rotate(-8)"><path d="M0 35h74v60H0Z" fill="#82765c"/><path d="M-12 39L35 0l53 39Z" fill="#9d7860"/><rect x="12" y="52" width="19" height="22" rx="3" fill="#d5bc7c"/><path d="M21 52v22m-9-11h19" stroke="#82765c" stroke-width="3"/><rect x="47" y="56" width="17" height="39" rx="7" fill="#554e3e"/></g>
+          <g class="cottage" transform="translate(686 118) rotate(8)"><path d="M0 30h67v57H0Z" fill="#7d8166"/><path d="M-12 34L33 0l46 34Z" fill="#697363"/><rect x="12" y="46" width="19" height="20" rx="3" fill="#d5bc7c"/><path d="M21 46v20m-9-10h19" stroke="#7d8166" stroke-width="3"/><rect x="45" y="52" width="13" height="35" rx="5" fill="#4c5a49"/></g>
+          <g fill="#c5cd97" opacity=".7" class="fireflies"><circle cx="290" cy="116" r="2"/><circle cx="603" cy="202" r="2.5"/><circle cx="232" cy="448" r="2"/><circle cx="668" cy="409" r="1.8"/><circle cx="518" cy="114" r="2"/><circle cx="106" cy="278" r="1.8"/></g>
+        </svg>
+        <div class="moon" aria-hidden="true"></div>
+        <div id="seats" class="seats"></div>
+        <div class="campfire" aria-hidden="true"><div class="fire-glow"></div><svg viewBox="0 0 120 125"><ellipse cx="60" cy="105" rx="44" ry="13" fill="#162c25" opacity=".4"/><g stroke="#756b55" stroke-width="12" stroke-linecap="round"><path d="M30 100l56 9"/><path d="M33 111l52-20"/></g><g class="flames"><path d="M60 15c15 28 5 32 19 40 5-5 7-9 8-14 24 32 15 57-25 59C22 100 16 75 40 47c-3 21 8 23 9 9 2-16 6-25 11-41Z" fill="#d4965c"/><path d="M61 52c7 16 1 20 11 25l6-9c8 15 1 29-17 30-22-1-25-12-13-29 0 10 6 9 13-17Z" fill="#f0cb80"/></g><g class="sparks" fill="#edc389"><circle cx="53" cy="17" r="2"/><circle cx="78" cy="26" r="1.7"/><circle cx="43" cy="39" r="1.4"/></g></svg><span>불멍 중</span></div>
+        <div id="empty" class="empty-stage"><span>우리, 조금 수상해도 괜찮잖아.</span><button id="welcome-start" class="primary">모닥불 켜기 <span>↗</span></button><small>API 키 없이 무료로 둘러보세요</small></div>
+        <div class="stage-bottom"><span class="live-dot"></span><span id="stage-status">잠시 쉬어 가기 좋은 곳</span><span class="leaf-decoration">⌁</span></div>
+      </div>
+      <div class="playbar">
+        <button id="play" class="primary" disabled>▶ 자동 관전</button>
+        <button id="step" class="quiet" disabled title="한 주민의 행동만 진행합니다">한 차례 ▷</button>
+        <label class="speed-label">속도 <select id="speed" aria-label="관전 속도"><option value="4">느긋하게</option><option value="2.4" selected>보통</option><option value="1.2">빠르게</option><option value="0.3">아주 빠르게</option></select></label>
+        <span id="turn-count" class="muted">0번의 작은 선택</span>
+      </div>
+      <div id="resident-detail" class="resident-detail"><span class="detail-icon">✳</span><div><strong>누가 가장 수상한가요?</strong><p>주민을 누르면 나만의 의심 표시를 남길 수 있어요. 게임에는 영향을 주지 않아요.</p></div></div>
+      <section class="budget-card" aria-label="API 사용 예산">
+        <div><p class="eyebrow">작고 소중한 관전 예산</p><strong id="total-cost">$0.0000 <span>/ $8.00</span></strong><div class="budget-track"><div id="budget-fill"></div></div></div>
+        <div class="budget-right"><span>이번 마을 <b id="game-cost">$0.0000</b></span><span id="token-count">실제 API 호출 0회</span><small>피크 단가 기준 보수적 추정 · 계정 잔액 아님</small></div>
+      </section>
+      <p id="reservation-note" class="fineprint">API 키는 로컬 서버에만 보관됩니다. GPU도, 복잡한 설치도 필요 없어요.</p>
+    </section>
+    <aside class="story-panel" aria-label="주민들의 이야기">
+      <div class="story-heading"><div><p class="eyebrow">OVERHEARD BY THE FIRE</p><h2>모닥불 옆 이야기 <span id="event-count">0</span></h2></div><span class="story-flower">✳</span></div>
+      <div class="tabs" role="tablist" aria-label="대화 종류"><button id="public-tab" class="active" role="tab" aria-selected="true">공개 대화</button><button id="secret-tab" role="tab" aria-selected="false">비밀 일기 <span>♧</span></button></div>
+      <div id="feed" class="feed" role="log" aria-live="polite" aria-label="마을 대화"><div class="feed-empty"><span>☕</span><h3>아직은 조용한 마을</h3><p>모닥불을 켜면<br>작은 이야기들이 모이기 시작해요.</p></div></div>
+      <div class="rewind"><label for="rewind">대화 되감기</label><input id="rewind" type="range" min="0" max="0" value="0" aria-label="대화 기록 되감기"><button id="follow" class="quiet">지금</button></div>
+      <div class="director"><label><input id="reveal" type="checkbox"><span class="switch"></span><span>감독 모드 <small>정체와 비밀 일기 보기</small></span></label><button id="export" class="quiet" disabled title="현재 보기의 JSON 기록을 저장합니다">↓ 저장</button></div>
+    </aside>
+  </main>
+  <footer><span>사람인 척하는 AI들을, 사람이 가만히 바라보는 시간.</span><span>LOCAL FIRST · MADE FOR SLOW EVENINGS</span></footer>
+</div>
+<dialog id="setup-dialog">
+  <form id="setup-form">
+    <div class="dialog-title"><div><p class="eyebrow">MAKE YOURSELF AT HOME</p><h2>새로운 이웃을 만나요.</h2></div><button class="icon-button" type="button" data-close="setup-dialog" aria-label="닫기">×</button></div>
+    <p class="dialog-description">서로 다른 성격, 같은 한마디. “나는 AI가 아니야!”</p>
+    <fieldset class="mode-picker"><legend class="sr-only">진행 모드</legend><label><input type="radio" name="mode" value="demo" checked><span><b>무료 데모</b><small>대본 기반 · API 호출 없음</small></span></label><label><input type="radio" name="mode" value="deepseek"><span><b>DeepSeek 라이브</b><small>주민마다 독립된 AI 대화</small></span></label></fieldset>
+    <div id="key-note" class="key-note" hidden></div>
+    <div class="form-grid"><label>마을 주민<select name="count"><option value="5">5명 · 잠입 AI 1명</option><option value="6">6명 · 잠입 AI 1명</option><option value="7" selected>7명 · 잠입 AI 2명</option></select></label><label>하루의 대화<select name="rounds"><option value="1">한 바퀴 · 알뜰하게</option><option value="2" selected>두 바퀴 · 이야기 풍성하게</option></select></label></div>
+    <div id="live-settings" hidden><div class="form-grid"><label>모델<select name="model"><option value="deepseek-flash">DeepSeek Flash</option><option value="deepseek-v4-pro">DeepSeek V4 Pro</option></select></label><label>한 판 최대 예산 (USD)<input name="budget" value="0.15" type="number" min="0.001" max="8" step="0.001" required></label></div><label class="consent"><input type="checkbox" name="consent">실제 API 사용료가 발생한다는 점을 확인했습니다.</label></div>
+    <details class="advanced"><summary>조금 더 자세히</summary><div class="form-grid"><label>역할 배정 시드<input name="seed" type="number" min="0" max="4294967295" value="42" required></label><label>최대 일수<input name="max_days" type="number" min="3" max="12" value="8" required></label></div><p>시드는 역할과 데모를 재현합니다. 실제 모델 응답까지 같아지지는 않아요.</p></details>
+    <div class="rules-note">인간 팀: 인간 · 분석가 · 수리공<br>AI 팀: 인간인 척 잠입한 AI<br><span>낮에는 토론과 비밀 투표, 밤에는 지목·조사·보호. 탈락은 조용한 퇴장으로 표현합니다.</span></div>
+    <p id="setup-error" class="form-error" role="alert"></p>
+    <button id="start" class="primary wide" type="submit">마을 열고 관전하기 ↗</button>
+    <p class="fineprint centered">새 마을을 열어도 이전 기록과 누적 예산은 남아 있어요.</p>
+  </form>
+</dialog>
+<dialog id="history-dialog"><div class="dialog-title"><h2>기록 서랍</h2><button class="icon-button" data-close="history-dialog" aria-label="닫기">×</button></div><p class="dialog-description">열어 둔 마을은 일시정지 상태로 돌아옵니다. 완결된 게임은 정체도 함께 공개됩니다.</p><div id="history-list"></div></dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>
