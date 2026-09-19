@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+data/
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.coverage
+htmlcov/
+*.sqlite3*
+server.lock
+playwright-report/
